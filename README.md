@@ -11,7 +11,7 @@ Primer taller de R-Ladies Villahermosa
 #### Requerimientos:
 ```
 instalar R y R studio
-Tutorial de descarga e instalación
-https://github.com/paomrom/IntroduccionRstudio/blob/main/InstalarRyRstudio.pdf
+Tutorial de descarga e instalación: https://bit.ly/3xQJ2Kj
+
 ```
 
