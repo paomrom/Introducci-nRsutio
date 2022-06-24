@@ -1,0 +1,388 @@
+---
+title: Introducción a Rstudio
+author: 
+date: Jan 12, 2021
+output: html_document
+  
+---
+
+#### Se trabajará en archivos Rmarkdown (.Rmd)!
+Este será tu cuadernillo de trabajo toma notas utilizando <b>#</b> y realiza los ejercicios en el documento.
+
+
+
+
+2. Generá un nuevo chunk con Ctrl + Alt+ i:
+```{r}
+1+1
+```
+
+
+3. Eliminá el siguiente chunk:
+
+4. Redacta un comentario cualquiera:
+```{r}
+#un comentario cualquiera
+```
+
+5. Preguntá cuál es tu directorio de trabajo con la función *getwd()*
+```{r}
+getwd()
+```
+
+
+```{r}
+# renombrar objeto
+example<-1
+```
+
+```{r}
+x=2
+```
+
+```{r}
+3 -> y
+```
+
+
+Tipo y estructura de datos
+6. Números decimales
+```{r}
+suma<-1.0+2.5
+suma
+```
+
+
+7. Números enteros o integer:
+```{r}
+1+2
+```
+
+8. Cadenas de texto o character:
+```{r}
+saludo <- "Bienvenidxs todxs"
+```
+
+```{r}
+"abc"
+1+1
+```
+
+
+9. Tipo factor:
+Una variable factor es una variable categórica. Los vectores de caracteres a menudo se almacenan como factores para explotar funciones para tratar datos categóricos. Más adelante los conoceremos a profundidad.
+```{r}
+"Femenino, Masculino, Otro"
+```
+
+8. Tipo logical: Verdadero (TRUE) o falso (FALSE). Es a menudo el resultado de operaciones lógicas.
+
+<- es el operador para designar o nombrar una variable u objeto
+```{r}
+a <- 1 #Llamamos "a" como una variable con valor 1
+b <- 2 #Llamamos "b" como una variable con valor 2
+a < b  #¿a es menor que b? o, ¿1 es menor que 2?
+
+```
+
+9. Validación de datos
+```{r}
+
+is.character(saludo)
+```
+
+```{r}
+is.numeric(b)
+```
+
+```{r}
+class(b)
+```
+
+
+```{r}
+a <- 1 #Llamamos "a" como una variable con valor 1
+b <- 2 #Llamamos "b" como una variable con valor 2
+a < b  #¿a es menor que b? o, ¿1 es menor que 2?
+res <- a<b
+```
+
+
+```{r}
+is.logical(res)
+```
+
+10. Además, con la función <b>Class</b> podemos saber que tipo de dato es una variable.
+```{r}
+class(res)
+
+class(a)
+
+class(b)
+```
+
+
+11. Coerción de datos
+También podemos hacer coerciones explícitas usando la familia de funciones as().
+
+```{r}
+a_1<-as.character(a)
+
+is.character(a_1)
+
+```
+
+12. Vectores:
+Se crea con la función c(), que significa ‘concatenar’ o ‘combinar’.
+```{r}
+# Vectores de estados con mayor población en Mx:
+abr_may <- c("EdoMex", "CDMX", "Ver", "Jal") #Vector cadena de texto
+
+
+entidad_may <- c("Estado México", "Ciudad de México", "Veracruz", "Jalisco") #Vector character
+
+pob_mil_may <-c(17363387, 8811266, 8163963, 8110943)
+
+names_example<-c("Yere", "Aza", "Nancy")
+edad <-c(26, NA, 24, 28, 22, 26)
+```
+
+```{r}
+#Estados con menor población en Mx
+
+abr_men <- c("Nay", "Camp", "BCS", "Col")  #Vector texto
+
+entidad_men <- c("Nayarit", "Campeche", "Baja Calfornia S", "Colima") 
+
+pob_mil_men <-c(1268460, 935047, 809833, 747801)
+```
+
+```{r}
+length(entidad_may) #Longitud del vector
+```
+
+```{r}
+entidad_may[2:3] #Extraer información del vector
+
+```
+
+```{r}
+entidad_may[c(2:3)] #Extraer información del vector | Otra forma
+```
+
+Podemos hacer transformaciones de los vectores con los operadores aritméticos
+```{r}
+
+pob_mil_may - pob_mil_men #Transformar vectores
+pob_mil_may /1000000
+
+```
+
+
+```{r}
+is.vector(entidad_may) #Validar vector
+```
+
+13. Matrices:
+Una matriz es una forma de acomodar los datos que tiene renglones o filas y columnas. Continuando con nuestro ejemplo.
+```{r}
+matrix_ent_may <- matrix(c(abr_may, entidad_may, pob_mil_may),
+                         nrow = 4,
+                         ncol = 3)
+matrix_ent_may
+```
+
+
+Personalizamos los nombre de los vectores
+```{r}
+colnames(matrix_ent_may)<-c("Abreviatura", "Entidad", "Población")
+
+rownames(matrix_ent_may)<-c(1, 2, 3, 4)
+matrix_ent_may
+```
+
+Selección de elementos de una matriz
+```{r}
+matrix_ent_may[4,] #Selección de una fila
+
+```
+
+```{r}
+matrix_ent_may[,3] #Selección de columna
+
+```
+
+```{r}
+matrix_ent_may [4,2] # Seleccionar un elemento en especifico
+
+```
+
+Hemos visto: 
+
+Variables: espacio para guardar un objeto. 
+Vectores: una o más variable del mismo tipo de datos. 
+Matrices: varias columnas/vectores del mismo tipo de datos. 
+¿qué sigue?
+Dataframes: tabla o columna de diferente tipo de datos. 
+
+14. Dataframes df:
+En un dataframe podemos tener una columna con caracteres otra con números y otra con variables lógicas. Así como mayor funciones para el manejo y manipulación de los dataframes.
+
+```{r}
+#Añadimos columna TRUE - FALSE
+
+ubicacion_may <-c(TRUE, T, F, F)
+```
+
+```{r}
+df_ent_may <- data.frame(abr_may,
+                          entidad_may,
+                          pob_mil_may,
+                         ubicacion_may)
+df_ent_may
+```
+Comenzamos a utilizar propiedades de los dataframes
+
+Nombre de las columnas
+```{r}
+names(df_ent_may) 
+
+```
+
+Muestra el encabezado del df la "," después del objeto es el número de obsevaciones que deseas ver.
+```{r}
+head(df_ent_may, 2) 
+```
+
+Muestra la parte final del df la "," después del objeto es el número de obsevaciones que deseas ver
+```{r}
+tail(df_ent_may, 1)
+
+```
+
+Muestra la dimension del df
+```{r}
+dim(df_ent_may)
+
+```
+
+Muestra la clase del df
+```{r}
+class(df_ent_may) 
+class(a)
+
+```
+
+
+La función summary() provee salidas para cada variable dependiendo del tipo de datos. Cuando los valores son numéricos, como en nuestro caso, summary() muestra el minimo, 1er cuartil, mediana, media mean, entre otroe. Para variables categóricas, muestra el número de veces que cada valor aparece en los datos (esto es llamado “level”).
+```{r}
+summary(df_ent_may) 
+
+```
+
+Extra... En dataframe puedes utilizar operadores como "$" de especificación y %>% que lo veremos más adelante en dplyr.
+```{r}
+unique(df_ent_may$entidad_may)
+
+```
+
+
+# Código con R base y tidiverse
+
+### Instalamos y cargamos la paquetería tidyverse
+```{r}
+#Se instala paqueteria una sola vez
+#install.packages("tidyverse")
+
+#Se carga la paqueteria cada vez que deseamos trabajar con ella
+library(tidyverse)
+library(dplyr)
+```
+ Ojo: identificar mensajes de error (color rojo) y avisos de R
+
+
+ Cargar bases de datos formato csv
+
+```{r}
+victimas<-read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQr_U2qTUJHQGQsnaCyGFOMBpUkAYsIuT5BPpfJnS4yvDs90xZDLBYu9VOqO-SIaA/pub?gid=1818215671&single=true&output=csv", encoding = "UTF-8")
+
+```
+Base de dato 
+Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública
+La incidencia delictiva se refiere a la presunta ocurrencia de delitos registrados en averiguaciones previas iniciadas o carpetas de investigación, reportadas por las Procuradurías de Justicia y Fiscalías Generales de las entidades federativas en el caso del fuero común y por la Fiscalía General de la República en el fuero federal.
+Los datos presenta informacion de [Cifras de Víctimas del Fuero Común, 2015 - abril 2022](https://drive.google.com/file/d/1f7ZG14snzBQDCFGJD98VVDJ17Dd1BvKE/view) 
+
+```{r}
+#Vemos las columnas que integra la base
+colnames(victimas)
+```
+
+
+```{r}
+#Leemos los delitos que integra la base de datos
+unique(victimas$Tipo.de.delito)
+```
+
+```{r}
+#Concatenamos dos delitos de interés
+#Sólo trabajaremos con Feminicidios y Homicidios dolosos -filtramos delitos
+delitos<- c("Feminicidio", "Homicidio doloso")
+```
+
+Transformación y manipulación de datos con pipes (%>%)
+
+
+```{r}
+library(dplyr)
+
+
+
+#Hacemos sumatoria de los meses por los delitos que corresponden a mujeres
+victimas%>% filter(Sexo=="Mujer",
+                   Subtipo.de.delito%in%delitos) %>% 
+  group_by(Año, Subtipo.de.delito) %>% 
+  summarise(ene=sum(Enero, na.rm = T),
+            feb=sum(Febrero, na.rm = T),
+            mar=sum(Marzo, na.rm = T),
+            abr=sum(Abril, na.rm = T),
+            may=sum(Mayo, na.rm = T),
+            jun=sum(Junio, na.rm = T),
+            jul=sum(Julio, na.rm = T),
+            ago=sum(Agosto, na.rm = T),
+            sep=sum(Septiembre, na.rm = T),
+            oct=sum(Octubre, na.rm = T),
+            nov=sum(Noviembre, na.rm = T),
+            dic=sum(Diciembre, na.rm = T),
+            Total=sum(ene+feb+mar+abr+ 
+                        may+jun+jul+ago+
+                        sep+oct+nov+dic)) %>% 
+  select(Año, Subtipo.de.delito, Total)->victimas_anual
+```
+
+
+
+Paquetería ggplot2
+
+Generación de gráficos
+```{r}
+
+#Visualización anual de líneas y puntos de muertes violentas
+victimas_anual %>% ggplot() +
+  geom_line(aes(x=Año, y=Total, group=Subtipo.de.delito, color=Subtipo.de.delito)) +
+  geom_point(size=2, aes(x=Año, y=Total, group=Subtipo.de.delito, color=Subtipo.de.delito))+
+  scale_color_manual(values = c("#78408B", "#C91682", "#ca97db"))+
+  labs(title = "Total de muertes violentas de mujeres", 
+       subtitle = "Periodo enero 2015 - abril 2022",
+       x= "",
+       y="",
+       caption = "Elaborado a partir de los datos abiertos del Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública
+       @Paomrom")+
+  theme(axis.text.x = element_text(angle = 45), legend.position = "bottom") +
+  geom_text(aes(x=Año, y=Total, label=Total, hjust=1, vjust=1), colour="black")-> gráfico
+
+```
+
+
+```{r}
+gráfico
+```
