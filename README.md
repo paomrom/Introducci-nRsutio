@@ -1,5 +1,5 @@
 # IntroduccionRstudio
-Material a introducción a R studio
+Material a introducción a R studio, primeros pasitos.
 
 Primer taller de R-Ladies Villahermosa
 
@@ -11,7 +11,7 @@ Primer taller de R-Ladies Villahermosa
 #### Requerimientos:
 ```
 instalar R y R studio
-
-
+Tutorial de descarga e instalación
+https://github.com/paomrom/IntroduccionRstudio/blob/main/InstalarRyRstudio.pdf
 ```
 
